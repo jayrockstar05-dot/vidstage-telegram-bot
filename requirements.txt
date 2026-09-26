@@ -1,5 +1,5 @@
 fastapi
 uvicorn
 python-telegram-bot
-playwright
-requests
+httpx
+beautifulsoup4
