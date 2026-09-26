@@ -583,7 +583,6 @@ async def webhook(
 # ============================================================
 # STARTUP
 # ============================================================
-
 @app.on_event("startup")
 async def startup():
 
@@ -591,9 +590,23 @@ async def startup():
 
     await telegram_app.start()
 
+    render_url = os.environ.get("RENDER_EXTERNAL_URL")
+
+    if render_url:
+        webhook_url = f"{render_url}/webhook"
+
+        await telegram_app.bot.set_webhook(
+            url=webhook_url
+        )
+
+        print(
+            f"Telegram webhook set to: {webhook_url}"
+        )
+
     print(
         "Telegram bot started successfully."
     )
+    
 
 
 # ============================================================
